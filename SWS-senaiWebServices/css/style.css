@@ -1,0 +1,493 @@
+
+:root {
+    --primary: #0066b3;
+    --primary-dark: #005091;
+    --secondary: #f8f9fa;
+    --accent: #ff6b00;
+    --text: #333;
+    --text-light: #f8f9fa;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fa;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--text-light);
+    box-shadow: var(--shadow);
+    
+    position: relative;
+    z-index: 1000;
+    display: inline-flex
+;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.headlogo {
+    margin-top: 1rem;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.headlogo img {
+    height: 80px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.headlogo .logo-text {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.headlogo .logo-text .top {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+.headlogo .logo-text .bottom {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+}
+
+nav {
+    width: 100vw;
+    margin-top: 0rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    padding: 0.2rem 1rem;
+    display: flex
+;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+nav > ul > li {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+nav > ul > li > a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    border-radius: 6px;
+}
+
+nav > ul > li > a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+nav ul ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    width: 220px;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+nav ul li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+nav ul ul li {
+    position: relative;
+}
+
+nav ul ul li a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    text-align: left;
+}
+
+nav ul ul li a:hover {
+    background: var(--secondary);
+    color: var(--primary);
+    padding-left: 1.8rem;
+}
+
+nav ul ul li a:after {
+    content: "→";
+    position: absolute;
+    right: 1rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+nav ul ul li a:hover:after {
+    opacity: 1;
+    right: 0.8rem;
+}
+
+
+nav > ul > li > a:after {
+    content: "▼";
+    font-size: 0.6rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+
+.content-placeholder {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.content-placeholder h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-placeholder p {
+    color: #666;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    header h1 {
+        margin: 1rem 0;
+    }
+    
+    nav > ul {
+        flex-wrap: wrap;
+    }
+    
+    nav > ul > li {
+        flex: 1 1 30%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav > ul > li {
+        flex: 1 1 45%;
+    }
+    
+    nav ul ul {
+        width: 180px;
+    }
+}
+/* HEADER----------------------------------------------------------------------------------------------------------- */
+
+
+.botoes {
+    margin-top: 2vw;
+display: flex;
+justify-content: center;
+gap: 2vw;
+}
+
+.botoes a{
+    color: white;
+    font-size: 1.2vw;
+    background-color: #005091;
+    border-radius: 10px;
+    padding: 0.5vw;
+}
+
+
+/* FORMS PARA INSTRUTOR */
+.instrutor {
+     display: none;
+    width: 90%;
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    font-family: "Segoe UI", Arial, sans-serif;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.instrutor input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+.instrutor h2{
+    text-align: center;
+    color: #004080;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+.instrutor button {
+    background: #0066b3;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.instrutor button:hover {
+    background: #005091;
+}
+
+/* salas */
+.sala {
+    display: none;
+    width: 90%;
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    font-family: "Segoe UI", Arial, sans-serif;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.sala h2 {
+    text-align: center;
+    color: #004080;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.sala label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.sala input[type="text"],
+.sala textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.sala input[type="text"]:focus,
+.sala textarea:focus {
+    border-color: #004080;
+    box-shadow: 0 0 0 3px rgba(0,64,128,0.15);
+    outline: none;
+}
+
+.sala textarea {
+    resize: none;
+}
+
+.sala input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+    accent-color: #004080;
+}
+
+.sala button {
+    background: #0066b3;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sala button:hover {
+    background: #003366;
+    transform: translateY(-2px);
+}
+
+
+
+.aulas {
+    display: none;
+    width: 90%;
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    font-family: "Segoe UI", Arial, sans-serif;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.aulas h2 {
+    text-align: center;
+    color: #004080;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.aulas label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2d3748;
+    font-size: 0.95rem;
+}
+
+.aulas input[type="text"],
+.aulas input[type="date"],
+.aulas select {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+.aulas input[type="text"]:focus,
+.aulas input[type="date"]:focus,
+.aulas select:focus {
+    border-color: #004080;
+    box-shadow: 0 0 0 4px rgba(0,64,128,0.15);
+    outline: none;
+    background-color: #fff;
+}
+
+.aulas select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+.aulas textarea {
+    resize: none;
+}
+
+.aulas input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+    accent-color: #004080;
+}
+
+.aulas button {
+    background: #0066b3;
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.aulas button:hover {
+    background: #004d84;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,64,128,0.2);
+}
+
+.aulas button:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+/* Animação suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
