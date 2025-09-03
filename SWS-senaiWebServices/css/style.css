@@ -1,0 +1,564 @@
+/* Step 1.1: Define color variables for both themes */
+:root {
+    --primary: #0066b3;
+    --primary-dark: #005091;
+    --secondary: #f8f9fa;
+    --accent: #ff6b00;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+
+    /* Light Theme Colors */
+    --bg-color: #f5f7fa;
+    --surface-color: #ffffff;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-light: #f8f9fa;
+    --border-color: #ddd;
+    --input-bg: #f8fafc;
+}
+
+html[data-theme="dark"] {
+    --primary: #0077cc;
+    --primary-dark: #005091;
+    --secondary: #3a3a3a;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    
+    /* Dark Theme Colors */
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --text-light: #f8f9fa;
+    --border-color: #444;
+    --input-bg: #2c2c2c;
+}
+
+/* Step 1.2: Apply variables throughout the stylesheet */
+* {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: var(--transition); /* Smooth theme change */
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--text-light);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.headlogo {
+    margin-top: 1rem;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.headlogo img {
+    height: 80px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.headlogo .logo-text {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.headlogo .logo-text .top {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+.headlogo .logo-text .bottom {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+}
+
+/* Style for the theme toggle button */
+.theme-toggle-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+    margin-right: 2rem; /* Adjust as needed */
+}
+
+.theme-toggle-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+
+nav {
+    width: 100vw;
+    margin-top: 0rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    padding: 0.2rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+nav > ul > li {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+nav > ul > li > a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    border-radius: 6px;
+}
+
+nav > ul > li > a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+nav ul ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--surface-color); /* Use variable */
+    width: 220px;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+nav ul li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+nav ul ul li {
+    position: relative;
+}
+
+nav ul ul li a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: var(--text-primary); /* Use variable */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    text-align: left;
+}
+
+nav ul ul li a:hover {
+    background: var(--secondary); /* Use variable */
+    color: var(--primary);
+    padding-left: 1.8rem;
+}
+
+nav ul ul li a:after {
+    content: "→";
+    position: absolute;
+    right: 1rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+nav ul ul li a:hover:after {
+    opacity: 1;
+    right: 0.8rem;
+}
+
+nav > ul > li > a:after {
+    content: "▼";
+    font-size: 0.6rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.content-placeholder {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--surface-color); /* Use variable */
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.content-placeholder h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-placeholder p {
+    color: var(--text-secondary); /* Use variable */
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    header h1 {
+        margin: 1rem 0;
+    }
+    nav > ul {
+        flex-wrap: wrap;
+    }
+    nav > ul > li {
+        flex: 1 1 30%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav > ul > li {
+        flex: 1 1 45%;
+    }
+    nav ul ul {
+        width: 180px;
+    }
+}
+
+/* HEADER----------------------------------------------------------------------------------------------------------- */
+
+.botoes {
+    margin-top: 2vw;
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.botoes a {
+    color: var(--text-light); /* Use variable */
+    font-size: 1.2vw;
+    background-color: var(--primary-dark); /* Use variable */
+    border-radius: 10px;
+    padding: 0.5vw;
+    transition: var(--transition);
+}
+.botoes a:hover {
+    background-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Generic Form Container Style */
+.form-container {
+    width: 90%;
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--surface-color); /* Use variable */
+    color: var(--text-primary); /* Use variable */
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    font-family: "Segoe UI", Arial, sans-serif;
+    animation: fadeIn 0.4s ease-in-out;
+    border: 1px solid var(--border-color); /* Add subtle border */
+}
+.form-container h2 {
+    text-align: center;
+    color: var(--primary); /* Use variable */
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+.form-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary); /* Use variable */
+    font-size: 0.95rem;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="date"],
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    border: 2px solid var(--border-color); /* Use variable */
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg); /* Use variable */
+    color: var(--text-primary); /* Use variable */
+}
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="date"]:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: var(--primary); /* Use variable */
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+    outline: none;
+    background-color: var(--surface-color); /* Use variable */
+}
+
+.form-container select {
+    appearance: none;
+    /* SVG icon color will be controlled by 'stroke' */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+html[data-theme="dark"] .form-container select {
+    /* Change SVG icon color for dark mode */
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.form-container textarea {
+    resize: vertical;
+}
+.form-container input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+    accent-color: var(--primary); /* Use variable */
+}
+.form-container button {
+    background: var(--primary); /* Use variable */
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+.form-container button:hover {
+    background: var(--primary-dark); /* Use variable */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px color-mix(in srgb, var(--primary) 30%, transparent);
+}
+.form-container button:active {
+    transform: translateY(0);
+}
+
+/* Assign the generic class to your specific form divs */
+.instrutor, .sala, .aulas {
+    display: none; /* Keep this for your show/hide logic */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================= */
+/* THEME-AWARE TABLE STYLES (for consultas.php)  */
+/* ============================================= */
+
+main .content-wrapper {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+main h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+main th, main td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color); /* Use variable */
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+main th {
+    background-color: var(--secondary); /* Use variable */
+    font-weight: 600;
+    color: var(--text-primary); /* Use variable */
+}
+
+main tr:nth-child(even) {
+    background-color: color-mix(in srgb, var(--surface-color) 95%, var(--bg-color));
+}
+
+main tr:hover {
+    background-color: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+main p {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+main .welcome-message {
+    text-align: center;
+    padding: 50px;
+}
+
+/* Form styles for the filter */
+main form {
+    background-color: var(--secondary);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+main form label {
+    font-weight: 600;
+}
+
+main form input[type="date"],
+main form input[type="submit"] {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--input-bg);
+}
+
+main form input[type="submit"] {
+    background-color: var(--primary);
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+main form input[type="submit"]:hover {
+    background-color: var(--primary-dark);
+}
+
+/* ======================================================= */
+/* ADIÇÕES PARA O FORMULÁRIO DE EDIÇÃO (editar.php)      */
+/* ======================================================= */
+
+/* Adiciona espaçamento vertical entre os campos do formulário */
+.form-group {
+    margin-bottom: 1.2rem; /* VALOR AJUSTADO: Antes era 1.5rem */
+}
+
+/* Remove a margem do último elemento para um alinhamento perfeito com o botão */
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Classe especial para alinhar checkboxes e seus labels lado a lado */
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o checkbox e o texto */
+    margin-bottom: 1.2rem; /* VALOR AJUSTADO: Antes era 1.5rem */
+}
+
+.form-group-checkbox label {
+    margin-bottom: 0; /* Remove a margem padrão do label dentro deste grupo */
+    font-weight: normal; /* Deixa o texto do label do checkbox com peso normal */
+}
+
+/* Os estilos principais do .form-container e seus elementos internos também precisam ser ajustados.
+   Esses blocos já existiam no seu CSS. Apenas ajustei os valores para serem mais compactos.
+   Por favor, verifique se esses ajustes combinam com os que você já tem ou se precisa alterá-los.
+*/
+.form-container {
+    padding: 25px; /* VALOR AJUSTADO: Antes era 30px */
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="date"],
+.form-container select,
+.form-container textarea {
+    padding: 12px 15px; /* VALOR AJUSTADO: Antes era 14px 16px */
+}
+
+.form-container button {
+    padding: 14px; /* VALOR AJUSTADO: Antes era 16px */
+}
