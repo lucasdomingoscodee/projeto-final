@@ -49,6 +49,8 @@ CREATE TABLE aulas (
 
 SELECT * FROM instrutores;
 SELECT * FROM salas;
+SELECT * FROM usuarios;
 SELECT * FROM aulas;
 drop table aulas;
-DELETE FROM salas WHERE id_sala = 4;
+DELETE FROM instrutores WHERE id_instrutores in (4,5,6,7,8,9,10);
+DELETE FROM instrutores WHERE id_instrutores = 11;
